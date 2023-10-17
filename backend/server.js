@@ -1,6 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import { initializeDatabase } from "./db/database.js";
+import campaignRoutes from "./routes/campaignRoutes.js";
 
 const port = process.env.PORT || 4000;
 
@@ -11,8 +13,13 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+//Initialize the SQLite database
+initializeDatabase();
+
+//Routes for campaigns
+app.use("/api/campaigns", campaignRoutes);
 
 //Start server
-app.listen(port, ()=>{
-    console.log(`Server is running on port${port}`);
-})
+app.listen(port, () => {
+  console.log(`Server is running on port${port}`);
+});
