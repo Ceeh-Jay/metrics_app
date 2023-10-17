@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+
 import { initializeDatabase } from "./db/database.js";
 import campaignRoutes from "./routes/campaignRoutes.js";
 
@@ -14,10 +15,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //Initialize the SQLite database
-initializeDatabase();
+const db = initializeDatabase();
 
 //Routes for campaigns
-app.use("/api/campaigns", campaignRoutes);
+app.use("/api/campaigns", campaignRoutes(db));
 
 //Start server
 app.listen(port, () => {
