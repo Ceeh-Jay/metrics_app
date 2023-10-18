@@ -10,9 +10,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^3.0.3"
   },
-  "dependencies":{
-
-  },
+  "dependencies": {},
   "scripts": {
     "lint": "eslint '**/*.{js,jsx}' --quiet",
     "lint-fix": "eslint '**/*.{js,jsx}' --fix",

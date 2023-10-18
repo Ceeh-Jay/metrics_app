@@ -1,16 +1,49 @@
 import { createRoot } from "react-dom/client";
+import { useState } from "react";
 
 import Metrics from "./components/Metrics";
 import CampaignForm from "./components/CampaignForm";
 import RetrieveAndCalculate from "./components/RetrieveAndCalculate";
 
+const apiUrl = "http://localhost:4000/api/campaigns";
+
 const App = () => {
+  const [campaignData, setCampaignData] = useState(null);
+
+  const handleDataRetrieved = (data) => {
+    setCampaignData(data);
+  };
+
+  // Calculate metrics
+  const calculateMetrics = () => {
+    if (!campaignData || campaignData.message) return null;
+
+    const ctr = (
+      (campaignData.clicks / campaignData.impressions) *
+      100
+    ).toFixed(2);
+    const cr = ((campaignData.conversions / campaignData.clicks) * 100).toFixed(
+      2,
+    );
+    const cpc = (campaignData.spend / campaignData.clicks).toFixed(2);
+    const costPerConversion = (
+      campaignData.spend / campaignData.conversions
+    ).toFixed(2);
+
+    return { ctr, cr, cpc, costPerConversion };
+  };
+
+  const metricsData = calculateMetrics();
+
   return (
-    <div>
-      <h1>Hello, from Marketing Metrics</h1>
-      <CampaignForm />
-      <Metrics />
-      <RetrieveAndCalculate />
+    <div className="app-container">
+      <h1 className="app-heading">Hello, from Marketing Metrics</h1>
+      <CampaignForm apiUrl={apiUrl} />
+      <Metrics data={metricsData || campaignData} />
+      <RetrieveAndCalculate
+        apiUrl={apiUrl}
+        onDataRetrieved={handleDataRetrieved}
+      />
     </div>
   );
 };
@@ -20,24 +53,3 @@ export default App;
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(<App />);
-
-//if the formData is contained in there it is the css is set attribute is set accordingly
-//and the value of the field is set to the error message
-
-//if form error state contains name of the element, we will style the element accordingly
-//and set the appropriate state.
-
-{
-  /* {formErrors.campaignName && <p className="error">{formErrors.campaignName}</p>}
-{formErrors.impressions && <p className="error">{formErrors.impressions}</p>}
-{formErrors.clicks && <p className="error">{formErrors.clicks}</p>}
-{formErrors.conversions && <p className="error">{formErrors.conversions}</p>}
-{formErrors.spend && <p className="error">{formErrors.spend}</p>}
-*/
-}
-
-//i am thinking the first component makes the request and populate the parent componet
-//state and the second componet will use the parent state.
-
-//"retrieve and calculate button will be a form button 
-//with a hidden attribute for the input element"

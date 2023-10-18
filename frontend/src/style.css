@@ -12,24 +12,175 @@ body {
   --background-color: #f8f9fa;
 }
 
-/* Style the header */
-.header {
-  background-color: var(--primary-color);
-  color: #fff;
-  padding: 10px;
+.app-container {
+  background-color: #f0f0f0;
+  padding: 20px;
   text-align: center;
 }
 
-/* Style buttons */
-.button {
-  background-color: var(--primary-color);
+.app-heading {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Styling for the CampaignForm component */
+.campaign-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Styling for the RetrieveAndCalculate button */
+.retrieve-button {
+  background-color: #007bff;
   color: #fff;
   border: none;
   padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
+  border-radius: 5px;
   transition: background-color 0.3s;
 }
 
-.button:hover {
+.retrieve-button:hover {
   background-color: #0056b3;
+}
+
+/* Styling for Metrics component */
+.metrics-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.no-data-message {
+  font-size: 18px;
+  color: #999;
+  margin: 20px 0;
+}
+
+/* Styling for the metrics details */
+.metrics-detail {
+  font-size: 18px;
+  color: #333;
+  margin: 10px 0;
+}
+
+/* Styling for the success toast message */
+.toastify-success {
+  background-color: #28a745 !important;
+  color: #fff !important;
+}
+
+/* Styling for form elements in CampaignForm component */
+.form-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  font-size: 16px;
+  color: #333;
+  width: 48%; /* Two labels per row */
+}
+
+.form-group input {
+  font-size: 16px;
+  padding: 10px;
+  width: 48%; /* Two inputs per row */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* For single elements per row*/
+.single-element-row label {
+  width: 100%;
+}
+
+.single-element-row input {
+  width: 100%;
+}
+
+/* Additional spacing between elements */
+.form-group + .form-group {
+  margin-top: 10px;
+}
+
+/* Style labels to be bold */
+label {
+  font-weight: bold;
+}
+
+/* Style the h4 element to not be bold */
+h4 {
+  font-weight: normal;
+}
+
+/* Make placeholder text italic */
+input::placeholder {
+  font-style: italic;
+}
+
+/* Hide the up and down arrows for number input fields */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Styling for error messages */
+.error {
+  color: red; /* Set the text color to red */
+  font-size: 14px; /* Set the font size */
+  font-weight: normal; /* Remove bold formatting */
+  font-style: italic; /* Make the text italic */
+  margin-top: 5px; /* Add some space below the error message */
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.metrics-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 10px; /* Add some space between items */
+}
+
+.metrics-container p {
+  width: calc(50% - 5px); /* Adjust the width to fit two items per row */
+  margin: 0;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis (...) if content overflows */
+}
+
+/**/
+.metrics-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  text-align: center; /* Center text content */
+  height: 100%; /* Ensure the container takes the full height */
+}
+
+.metrics-container p {
+  margin: 0;
+}
+
+/* Adjust the CSS for the buttons as needed */
+.metrics-container button {
+  margin: 10px; /* Add some spacing around the buttons */
 }

@@ -15,10 +15,11 @@ const RetrieveAndCalculate = ({ apiUrl, onDataRetrieved }) => {
   };
 
   return (
-    <div>
-      <button onClick={handleRetrieveData}>Retrieve and Calculate</button>
+    <div className="retrieve-calculate-container">
+      <button className="retrieve-button" onClick={handleRetrieveData}>Retrieve and Calculate</button>
     </div>
   );
 };
 
 export default RetrieveAndCalculate;
+

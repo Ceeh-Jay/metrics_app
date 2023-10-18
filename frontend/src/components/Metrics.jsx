@@ -1,29 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
 
 const Metrics = ({ data }) => {
-  const calculateMetrics = (data) => {
-    if (!data) return {};
-
-    const ctr = ((data.clicks / data.impressions) * 100).toFixed(2);
-    const cr = ((data.conversions / data.clicks) * 100).toFixed(2);
-    const cpc = (data.spend / data.clicks).toFixed(2);
-    const costPerConversion = (data.spend / data.conversions).toFixed(2);
-
-    return { ctr, cr, cpc, costPerConversion };
-  };
-
-  const [metrics, setMetrics] = useState(calculateMetrics(data));
-
-  useEffect(() => {
-    setMetrics(calculateMetrics(data));
-  }, [data]);
+  const renderMetric = (label, value) => (
+    <p>
+      {label}: {isNaN(value) ? "N/A" : value}
+    </p>
+  );
 
   return (
-    <div>
-      <p>Click Through Rate (CTR): {metrics.ctr || 'N/A'}%</p>
-      <p>Conversion Rate (CR): {metrics.cr || 'N/A'}%</p>
-      <p>Cost Per Click (CPC): ${metrics.cpc || 'N/A'}</p>
-      <p>Cost Per Conversion: ${metrics.costPerConversion || 'N/A'}</p>
+    <div className="metrics-container">
+      {data ? (
+        <>
+          {renderMetric("Click Through Rate (CTR)", data.ctr + "%")}
+          {renderMetric("Conversion Rate (CR)", data.cr + "%")}
+          {renderMetric("Cost Per Click (CPC)", "₦" + data.cpc)}
+          {renderMetric("Cost Per Conversion", "₦" + data.costPerConversion)}
+        </>
+      ) : (
+        <p className="no-data-message">No campaign data available</p>
+      )}
     </div>
   );
 };

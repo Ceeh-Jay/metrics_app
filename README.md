@@ -16,3 +16,7 @@
 # explain the folder strucure
     - this is a simple app ...
     - we will use react for the frontend
+
+# some app features
+    - when you click on the "Retrieve and Calculate" button when there is no data to show, the app informs you
+    -the app stors only one campaign data at a time. In other words it overrides the initial data if there is any

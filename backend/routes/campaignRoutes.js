@@ -8,6 +8,7 @@ export default (db) => {
   router.post("/", (req, res) => {
     //Use Joi validation for request body
     const { error } = campaignSchema.validate(req.body);
+
     if (error) {
       // Handle validation errors by sending a 400 Bad Request response
       res.status(400).json({ error: error.details.map((err) => err.message) });
@@ -79,7 +80,7 @@ export default (db) => {
     });
   });
 
-  router.get("/", (req, res) => {
+  router.get("/", (_req, res) => {
     // Check if there are any records in the campaigns table
     db.get("SELECT COUNT(*) AS count FROM campaigns", (countError, result) => {
       if (countError) {
